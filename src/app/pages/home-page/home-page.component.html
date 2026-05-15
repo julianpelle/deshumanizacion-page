@@ -1,0 +1,30 @@
+<div class="container">
+
+  <p>
+    Viste un QR y decidiste escanearlo solo para ver si te llevaba a algún lado.
+    eso también es
+  </p>
+
+  <h1 class="glitch">
+    DESHUMANIZACIÓN
+  </h1>
+
+  <div class="video">
+
+    @if (video) {
+
+      <video
+        autoplay
+        muted
+        controls
+        playsinline>
+
+        <source [src]="video" type="video/mp4">
+
+      </video>
+
+    }
+
+  </div>
+
+</div>

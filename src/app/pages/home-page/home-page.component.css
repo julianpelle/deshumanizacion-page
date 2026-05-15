@@ -1,0 +1,161 @@
+.container {
+
+  position: relative;
+  z-index: 2;
+
+  min-height: 100vh;
+
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  color: white;
+
+  gap: clamp(10px, 3vw, 30px);
+}
+
+/* TEXTO */
+
+p {
+
+  margin: 0;
+
+  font-size: clamp(0.8rem, 2vw, 1rem);
+
+  letter-spacing: 2px;
+
+  opacity: 0.85;
+
+  color: rgba(255,255,255,0.85);
+
+  text-shadow:
+    0 0 10px rgba(255,255,255,0.2);
+
+  max-width: 900px;
+
+  line-height: 1.5;
+}
+
+/* TITULO */
+
+.glitch {
+
+  margin: -5px 0 0 0;
+
+  position: relative;
+
+  font-size: clamp(2rem, 9vw, 8rem);
+
+  line-height: 0.9;
+
+  letter-spacing: 5px;
+
+  text-transform: uppercase;
+
+  color: white;
+
+  text-align: center;
+
+  white-space: nowrap;
+
+  text-shadow:
+    0 0 5px white,
+    0 0 10px white,
+    0 0 20px white,
+    0 0 40px white;
+
+  animation: glitchFlicker 5s infinite;
+}
+
+/* VIDEO */
+
+.video {
+
+  position: relative;
+
+  z-index: 3;
+
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+}
+
+.video video {
+
+  width: min(700px, 90vw);
+
+  max-height: 60vh;
+
+  object-fit: cover;
+
+  border-radius: 12px;
+
+  filter:
+    brightness(0.8)
+    contrast(1.2)
+    saturate(0.8);
+
+  box-shadow:
+    0 0 10px white,
+    0 0 30px rgba(255,255,255,0.2);
+}
+
+/* GLITCH */
+
+@keyframes glitchFlicker {
+
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.85;
+  }
+
+  100% {
+    opacity: 1;
+  }
+
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+  .container {
+
+    padding: 15px;
+
+  }
+
+  p {
+
+    letter-spacing: 1px;
+
+    line-height: 1.4;
+
+  }
+
+  .glitch {
+
+    letter-spacing: 2px;
+
+  }
+
+  .video video {
+
+    width: 92vw;
+
+    max-height: 50vh;
+    margin-top: 12px;
+
+  }
+
+}
