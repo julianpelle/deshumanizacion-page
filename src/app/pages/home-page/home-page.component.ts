@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { PicturesServiceService } from '../../services/pictures-service.service';
 
 @Component({

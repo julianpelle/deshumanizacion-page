@@ -1,1 +1,75 @@
-<p>kalvar-pictures-page works!</p>
+<div class="kalvar-page">
+
+  <h1 class="title">
+    KALVAR
+  </h1>
+
+<div class="carousel">
+@for (image of images; track image.public_id; let i = $index) {
+  <div #cardElement
+       class="card"
+       [class.selected-card]="selectedImage?.public_id === image.public_id"
+       (click)="selectImage(image, i)">
+      <img
+        [src]="image.secure_url"
+        [alt]="image.display_name"
+      >
+      <div class="overlay">
+        <h2>{{ image.display_name }}</h2>
+      </div>
+    </div>
+  }
+</div>
+
+@if (selectedImage) {
+  <div class="description-box" [class.fade-out]="isClosing">
+    <h2>{{ selectedImage.display_name }}</h2>
+    <p>{{ selectedExplanation || 'Sin explicación disponible.' }}</p>
+  </div>
+}
+
+  <!-- TEXTO + DIAGRAMA -->
+
+  <section class="analysis-section">
+
+    <div class="analysis-text top">
+
+      <h3>
+        Observamos que en la fotografía de Kalvar predomina la similitud:
+        una base visual que conecta a personas con animales u objetos
+        mediante formas y gestos.
+      </h3>
+      <p>
+        Para entender hacia dónde nos conducía este recurso,
+        creamos un diagrama que nos ayudó a decodificar estas asociaciones
+        y encontrar un nuevo punto de partida.
+      </p>
+
+    </div>
+
+    <img
+      [src]="diagramImages[0]?.secure_url"
+      alt="Diagrama de similitud"
+      class="diagrama"
+    >
+<div class="analysis-text">
+
+  <!-- Contenedor exclusivo para la línea del título -->
+  <div class="title-line">
+    <h3>Así llegamos al concepto de la:
+    <strong class="big-word">DESHUMANIZACIÓN</strong></h3>
+  </div>
+
+  <!-- El párrafo ahora respira correctamente abajo -->
+  <p>
+    Al ser una temática tan vasta,
+    optamos por acotarla al ámbito digital:
+    un enfoque actual que nos atraviesa constantemente
+    y redefine nuestro vínculo con la realidad.
+  </p>
+
+</div>
+
+  </section>
+
+</div>

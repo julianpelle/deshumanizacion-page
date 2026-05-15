@@ -1,84 +1,78 @@
 .container {
-
   position: relative;
   z-index: 2;
 
+  width: 100%;
   min-height: 100vh;
 
-  padding: 20px;
+  padding: 40px 20px;
 
   display: flex;
   flex-direction: column;
-
   align-items: center;
   justify-content: center;
 
   text-align: center;
 
-  color: white;
+  color: #e0e0e0;
 
-  gap: clamp(10px, 3vw, 30px);
+  gap: clamp(16px, 3vw, 30px);
+
+  margin: 0 auto;
 }
 
-/* TEXTO */
-
+/* =========================
+   TEXTO
+========================= */
 p {
+  margin: 0;
+
+  width: 100%;
+  max-width: 950px;
+
+  font-size: clamp(0.95rem, 1.3vw, 1.1rem);
+  line-height: 1.7;
+
+  letter-spacing: 1px;
+
+  opacity: 0.9;
+  color: #bbbbbb;
+
+  text-shadow: 0 0 6px rgba(106, 90, 125, 0.3);
+}
+
+/* =========================
+   TITULO GLITCH
+========================= */.glitch {
+  position: relative;
 
   margin: 0;
 
-  font-size: clamp(0.8rem, 2vw, 1rem);
+  width: 100%;
 
-  letter-spacing: 2px;
+  font-size: clamp(2.2rem, 10vw, 8rem);
+  line-height: 0.95;
 
-  opacity: 0.85;
-
-  color: rgba(255,255,255,0.85);
-
-  text-shadow:
-    0 0 10px rgba(255,255,255,0.2);
-
-  max-width: 900px;
-
-  line-height: 1.5;
-}
-
-/* TITULO */
-
-.glitch {
-
-  margin: -5px 0 0 0;
-
-  position: relative;
-
-  font-size: clamp(2rem, 9vw, 8rem);
-
-  line-height: 0.9;
-
-  letter-spacing: 5px;
+  letter-spacing: clamp(2px, 0.8vw, 12px);
 
   text-transform: uppercase;
-
-  color: white;
-
   text-align: center;
+
+  color: #e0e0e0;
 
   white-space: nowrap;
 
   text-shadow:
-    0 0 5px white,
-    0 0 10px white,
-    0 0 20px white,
-    0 0 40px white;
-
-  animation: glitchFlicker 5s infinite;
+    0 0 5px #fff,
+    0 0 10px #b77dff,
+    0 0 25px #b77dff,
+    0 0 45px #9b59b6;
 }
-
-/* VIDEO */
-
+/* =========================
+   VIDEO
+========================= */
 .video {
-
   position: relative;
-
   z-index: 3;
 
   width: 100%;
@@ -88,74 +82,138 @@ p {
 }
 
 .video video {
-
-  width: min(700px, 90vw);
-
-  max-height: 60vh;
+  width: min(900px, 100%);
+  max-height: 65vh;
 
   object-fit: cover;
 
-  border-radius: 12px;
+  border-radius: 14px;
 
-  filter:
-    brightness(0.8)
-    contrast(1.2)
-    saturate(0.8);
+  filter: brightness(0.75) contrast(1.2) saturate(0.8);
+
+  border: 1px solid rgba(128, 128, 128, 0.3);
 
   box-shadow:
-    0 0 10px white,
-    0 0 30px rgba(255,255,255,0.2);
+    0 0 10px rgba(0, 0, 0, 0.5),
+    0 0 25px rgba(106, 90, 125, 0.3);
 }
 
-/* GLITCH */
-
+/* =========================
+   ANIMACION
+========================= */
 @keyframes glitchFlicker {
-
   0% {
     opacity: 1;
+    text-shadow: 0 0 2px #aaa;
   }
 
   50% {
-    opacity: 0.85;
+    opacity: 0.9;
+    text-shadow: 0 0 6px #6c5b7b;
   }
 
   100% {
     opacity: 1;
+    text-shadow: 0 0 4px #8a6c9e;
   }
-
 }
 
-/* MOBILE */
-
+/* =========================
+   TABLET
+========================= */
 @media (max-width: 768px) {
-
   .container {
-
-    padding: 15px;
-
+    padding: 60px 18px 40px;
+    gap: 24px;
   }
 
   p {
-
-    letter-spacing: 1px;
-
-    line-height: 1.4;
-
-  }
-
-  .glitch {
-
-    letter-spacing: 2px;
-
+    font-size: 1rem;
+    line-height: 1.8;
   }
 
   .video video {
-
-    width: 92vw;
-
+    width: 100%;
     max-height: 50vh;
-    margin-top: 12px;
+  }
+}
 
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 480px) {
+  .container {
+    min-height: auto;
+    padding: 90px 16px 50px;
   }
 
+  .glitch {
+    font-size: clamp(1.6rem, 8vw, 2.8rem);
+    line-height: 1;
+    letter-spacing: 1px;
+
+    transform: scaleX(0.92);
+  }
+
+  p {
+    font-size: 0.95rem;
+    line-height: 1.9;
+    letter-spacing: 0.5px;
+  }
+
+  .video video {
+    border-radius: 12px;
+    max-height: 40vh;
+  }
+}
+/* =========================
+   IPAD PRO RESPONSIVE
+========================= */
+@media (min-width: 768px) and (max-width: 1366px) {
+  .container {
+    padding: 50px 30px;
+  }
+
+  .glitch {
+    font-size: clamp(3rem, 8vw, 6rem);
+    white-space: normal; /* permite saltos de línea en iPad */
+    word-break: break-word;
+  }
+
+  p {
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .video video {
+    width: 85%;
+    max-height: 55vh;
+  }
+}
+/* =========================
+   IPAD PRO (1024 x 1366 / 1366 x 1024)
+========================= */
+@media (min-width: 1000px) and (max-width: 1366px) {
+
+  .container {
+    padding: 60px 40px;
+    gap: 28px;
+  }
+
+  .glitch {
+    font-size: clamp(3rem, 7vw, 6rem);
+    white-space: nowrap;
+    letter-spacing: 4px;
+  }
+
+  p {
+    font-size: 1.1rem;
+    max-width: 800px;
+  }
+
+  .video video {
+    width: min(850px, 100%);
+    max-height: 55vh;
+  }
 }

@@ -16,5 +16,10 @@ export class PicturesServiceService {
   getAllPicturesByFolders(NameFolder:string):Observable<any[]> {
   return this.http.get<string[]>(`${this.urlBase}/${NameFolder}`);
 }
-}
+ getImagesData(): Observable<any[]> {
+    return this.http.get<any[]>(
+      'imagedata.json'
+    );
 
+}
+}
