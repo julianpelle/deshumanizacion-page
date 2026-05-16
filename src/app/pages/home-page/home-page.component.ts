@@ -17,7 +17,7 @@ export class HomePageComponent {
   ngOnInit(): void {
 
     this.picturesService
-      .getAllPicturesByFolders('vid1')
+      .getAllPicturesByFolders('vid2')
       .subscribe({
 
         next: (data) => {

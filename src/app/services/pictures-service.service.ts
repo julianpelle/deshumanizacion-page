@@ -26,4 +26,19 @@ export class PicturesServiceService {
       'folderdata.json'
     );
 }
+ getAnalisisData(): Observable<any[]> {
+    return this.http.get<any[]>(
+      'analysis.json'
+    );
+}
+ getTrialData(): Observable<any[]> {
+    return this.http.get<any[]>(
+      'trialdata.json'
+    );
+}
+ getVidData(): Observable<any[]> {
+    return this.http.get<any[]>(
+      'viddata.json'
+    );
+}
 }

@@ -1,0 +1,509 @@
+/* =========================
+   PÁGINA DE ANÁLISIS - ESTILOS RETROWAVE / NEON
+========================= */
+
+.analysis-page {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: #0a0a0c;
+  color: #e0e0e0;
+  padding: 60px 40px;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+/* Grid retrowave */
+.analysis-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: linear-gradient(rgba(106, 90, 125, 0.12) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(106, 90, 125, 0.12) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* Efecto noise */
+.analysis-page::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.15;
+}
+
+/* Título principal neon */
+.main-title {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  font-size: clamp(1.8rem, 5vw, 3.5rem);
+  font-weight: 700;
+  margin-bottom: 30px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #e0b0ff;
+  text-shadow: 0 0 5px #b77dff, 0 0 10px #9b59b6;
+  animation: titleNeonGlow 2s infinite alternate;
+}
+
+@keyframes titleNeonGlow {
+  0% { text-shadow: 0 0 2px #b77dff, 0 0 5px #9b59b6; }
+  100% { text-shadow: 0 0 8px #e0b0ff, 0 0 20px #b77dff; }
+}
+
+/* Texto introductorio */
+.intro-text {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto 60px auto;
+  text-align: center;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #dddddd;
+  text-shadow: 0 0 2px rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(4px);
+  padding: 20px 30px;
+  border-radius: 40px;
+  border: 1px solid rgba(183,125,255,0.3);
+}
+
+/* Cada caja de análisis */
+.analysis-box {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto 80px auto;
+  background: rgba(10, 10, 15, 0.7);
+  backdrop-filter: blur(12px);
+  border: 2px solid rgba(183, 125, 255, 0.5);
+  border-radius: 28px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  animation: boxBorderPulse 3s infinite alternate;
+}
+
+@keyframes boxBorderPulse {
+  0% {
+    border-color: rgba(183, 125, 255, 0.3);
+    box-shadow: 0 0 5px rgba(155, 89, 182, 0.2);
+  }
+  100% {
+    border-color: rgba(224, 176, 255, 0.8);
+    box-shadow: 0 0 20px rgba(183, 125, 255, 0.5);
+  }
+}
+
+/* Efecto de brillo deslizante */
+.analysis-box::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(115deg, transparent 30%, rgba(183, 125, 255, 0.06) 50%, transparent 70%);
+  transform: rotate(25deg);
+  animation: shineBox 8s infinite;
+  pointer-events: none;
+}
+
+@keyframes shineBox {
+  0% { transform: translateX(-100%) rotate(25deg); opacity: 0; }
+  20% { opacity: 0.4; }
+  40% { transform: translateX(100%) rotate(25deg); opacity: 0; }
+  100% { transform: translateX(200%) rotate(25deg); opacity: 0; }
+}
+
+/* Título de imagen */
+
+.glitch {
+  position: relative;
+
+  margin: 0;
+margin-bottom: 2rem;
+  width: 100%;
+
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  line-height: 0.95;
+
+
+  text-transform: uppercase;
+  text-align: center;
+
+  color: #e0e0e0;
+
+  white-space: nowrap;
+
+  text-shadow:
+    0 0 5px #fff,
+    0 0 10px #b77dff,
+    0 0 25px #b77dff,
+    0 0 45px #9b59b6;
+}
+/* Contenedor flexible */
+.content-wrapper {
+  display: flex;
+  align-items: stretch;
+  gap: 40px;
+  padding: 40px;
+}
+
+/* Lado imagen */
+.image-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  background: #00000033;
+  padding: 10px;
+}
+
+.image-container img {
+  width: 100%;
+  max-width: 650px;
+  height: auto;
+  border-radius: 18px;
+  object-fit: cover;
+  box-shadow: 0 10px 25px -8px black, 0 0 0 1px rgba(183,125,255,0.3);
+  transition: transform 0.3s, filter 0.3s;
+}
+
+.image-container img:hover {
+  transform: scale(1.01);
+  filter: brightness(1.05);
+  box-shadow: 0 0 15px rgba(183,125,255,0.4);
+}
+
+/* Lado texto (caja interna gris oscuro con animación) */
+.text-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background: #1e1e24;
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.4), inset 0 0 0 1px rgba(183,125,255,0.2);
+  animation: innerBoxPulse 3s infinite alternate, boxGlow 4s infinite;
+}
+
+@keyframes innerBoxPulse {
+  0% { background: #1a1a20; box-shadow: 0 5px 15px rgba(0,0,0,0.4), inset 0 0 0 1px rgba(183,125,255,0.1); }
+  100% { background: #22222a; box-shadow: 0 8px 25px rgba(155,89,182,0.2), inset 0 0 5px rgba(183,125,255,0.3); }
+}
+
+@keyframes boxGlow {
+  0% { border-left: 3px solid rgba(183,125,255,0.3); }
+  50% { border-left: 3px solid #e0b0ff; box-shadow: -5px 0 12px rgba(183,125,255,0.2); }
+  100% { border-left: 3px solid rgba(183,125,255,0.3); }
+}
+
+.text-container p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #f5f5f5 !important;
+  text-shadow: 0 0 1px rgba(0,0,0,0.5);
+  margin: 0;
+}
+
+/* =========================
+   RESPONSIVE AVANZADO
+========================= */
+
+/* =========================
+   MOBILE PEQUEÑO
+========================= */
+@media (max-width: 600px) {
+
+  .analysis-page {
+    padding: 22px 12px;
+  }
+
+  .analysis-page::before {
+    background-size: 30px 30px;
+    opacity: 0.35;
+  }
+
+  .main-title {
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+    margin-bottom: 18px;
+    line-height: 1.2;
+  }
+
+  .intro-text {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    padding: 14px;
+    border-radius: 20px;
+    margin-bottom: 28px;
+    backdrop-filter: blur(2px);
+  }
+
+  .analysis-box {
+    margin-bottom: 40px;
+    border-radius: 18px;
+    backdrop-filter: blur(5px);
+  }
+
+  .glitch {
+    font-size: 1.2rem;
+    line-height: 1.15;
+    white-space: normal;
+    word-break: break-word;
+    padding: 18px 10px 0 10px;
+    margin-bottom: 1rem;
+  }
+
+  .content-wrapper {
+    flex-direction: column;
+    padding: 14px;
+    gap: 16px;
+  }
+
+  .image-container {
+    padding: 6px;
+    border-radius: 14px;
+  }
+
+  .image-container img {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 12px;
+    object-fit: contain;
+  }
+
+  .text-container {
+    padding: 14px;
+    border-radius: 14px;
+    animation: none;
+  }
+
+  .text-container p {
+    font-size: 0.88rem;
+    line-height: 1.65;
+  }
+}
+
+/* =========================
+   TABLET / MOBILE GRANDE
+========================= */
+@media (max-width: 900px) {
+
+  .analysis-page {
+    padding: 35px 18px;
+  }
+
+  .main-title {
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+  }
+
+  .intro-text {
+    max-width: 100%;
+    padding: 18px;
+    border-radius: 24px;
+  }
+
+  .analysis-box {
+    border-radius: 22px;
+    margin-bottom: 55px;
+  }
+
+  .glitch {
+    white-space: normal;
+    line-height: 1.05;
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    padding: 10px 10px 0 10px;
+  }
+
+  .content-wrapper {
+    flex-direction: column;
+    gap: 22px;
+    padding: 22px;
+  }
+
+  .image-container,
+  .text-container {
+    width: 100%;
+  }
+
+  .image-container img {
+    max-width: 100%;
+    object-fit: cover;
+  }
+
+  .text-container {
+    padding: 18px;
+  }
+
+  .text-container p {
+    font-size: 0.95rem;
+    line-height: 1.75;
+  }
+}
+
+/* =========================
+   TABLETS + IPADS
+========================= */
+@media (min-width: 768px) and (max-width: 1366px) {
+
+  .analysis-page {
+    padding: 40px 28px;
+  }
+
+  .main-title {
+    font-size: 2.2rem;
+    letter-spacing: 3px;
+  }
+
+  .intro-text {
+    max-width: 95%;
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+
+  .analysis-box {
+    max-width: 100%;
+    border-radius: 24px;
+  }
+
+  .glitch {
+    white-space: normal;
+    line-height: 1.05;
+    font-size: clamp(2rem, 4vw, 2.6rem);
+    padding: 0 16px;
+  }
+
+  .content-wrapper {
+    gap: 24px;
+    padding: 26px;
+  }
+
+  .image-container img {
+    max-width: 100%;
+    max-height: 650px;
+    object-fit: contain;
+  }
+
+  .text-container {
+    padding: 22px;
+  }
+
+  .text-container p {
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+}
+
+/* =========================
+   DESKTOP MEDIO
+========================= */
+@media (min-width: 901px) {
+
+  .content-wrapper {
+    align-items: stretch;
+  }
+
+  .image-container,
+  .text-container {
+    min-height: 100%;
+  }
+
+  .image-container img {
+    height: 100%;
+    max-height: 720px;
+  }
+}
+
+/* =========================
+   NOTEBOOKS / IPAD PRO
+========================= */
+@media (min-width: 1000px) and (max-width: 1366px) {
+
+  .analysis-page {
+    padding: 50px 35px;
+  }
+
+  .main-title {
+    font-size: 2.5rem;
+  }
+
+  .intro-text {
+    max-width: 1100px;
+  }
+
+  .analysis-box {
+    max-width: 100%;
+  }
+
+  .glitch {
+    font-size: clamp(2.2rem, 3vw, 2.8rem);
+    white-space: normal;
+  }
+
+  .content-wrapper {
+    gap: 28px;
+    padding: 30px;
+  }
+
+  .image-container {
+    flex: 1;
+  }
+
+  .image-container img {
+    width: 100%;
+    max-width: 100%;
+    max-height: 700px;
+    object-fit: cover;
+  }
+
+  .text-container {
+    flex: 1;
+    padding: 24px;
+  }
+
+  .text-container p {
+    font-size: 1rem;
+    line-height: 1.9;
+  }
+}
+
+/* =========================
+   IPAD PRO LANDSCAPE / LARGE TABLETS
+========================= */
+@media (min-width: 1024px) and (max-width: 1366px) {
+
+  .analysis-page {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .content-wrapper {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .image-container,
+  .text-container {
+    min-width: 0;
+  }
+
+  .image-container img {
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .glitch {
+    line-height: 1;
+  }
+}

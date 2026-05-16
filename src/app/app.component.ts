@@ -1,49 +1,58 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { KalvarPicturesPageComponent } from './pages/kalvar-pictures-page/kalvar-pictures-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { OwnGalleryComponent } from './pages/own-gallery/own-gallery.component';
+import { AnalysisPageComponent } from './pages/analysis-page/analysis-page.component';
+import { OwnVideosComponent } from './pages/own-videos/own-videos.component';
 
 
 @Component({
   selector: 'app-root',
-  imports: [HomePageComponent,KalvarPicturesPageComponent,OwnGalleryComponent],
+  imports: [HomePageComponent,KalvarPicturesPageComponent,OwnGalleryComponent,AnalysisPageComponent,OwnVideosComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent implements AfterViewInit, OnInit {
 title = 'Deshumanizacion';
-ngAfterViewInit(): void {
-  const reveals = document.querySelectorAll('.reveal');
+ngOnInit(): void {
+    // Evita que el navegador restaure la posición del scroll al recargar
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    // Fuerza posición arriba inmediatamente al iniciar el componente
+    window.scrollTo(0, 0);
+  }
 
-  // Función para activar elementos visibles
-  const activateVisible = () => {
-    reveals.forEach(el => {
-      const rect = el.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      // Si el elemento está dentro del viewport (aunque sea parcialmente)
-      if (rect.top < windowHeight - 50 && rect.bottom > 0) {
-        el.classList.add('active');
-      }
-    });
-  };
+  ngAfterViewInit(): void {
+    // También después de que Angular pinte las vistas, aseguramos arriba
+    window.scrollTo(0, 0);
 
-  // Observer para elementos que entran después del scroll
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-        // Opcional: dejar de observar para rendimiento
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1, rootMargin: "20px 0px 20px 0px" }); // margen para detectar antes
+    const reveals = document.querySelectorAll('.reveal');
 
-  reveals.forEach(el => observer.observe(el));
+    const activateVisible = () => {
+      reveals.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        if (rect.top < windowHeight - 50 && rect.bottom > 0) {
+          el.classList.add('active');
+        }
+      });
+    };
 
-  // Activar inmediatamente los que ya son visibles
-  activateVisible();
-  // También al hacer scroll (por si acaso)
-  window.addEventListener('scroll', activateVisible);
-  window.addEventListener('resize', activateVisible);
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: "20px 0px 20px 0px" });
+
+    reveals.forEach(el => observer.observe(el));
+
+    activateVisible();
+    window.addEventListener('scroll', activateVisible);
+    window.addEventListener('resize', activateVisible);
+  }
 }
-}
+

@@ -1,0 +1,50 @@
+<div class="analysis-page">
+
+  <h1 class="glitch">
+    Análisis lingüístico de una imagen en particular
+  </h1>
+
+  <p class="intro-text">
+    Basándonos en Roland Barthes, ninguna imagen tiene elementos puestos al azar.
+    Cada objeto, color, posición, gesto o composición comunica algo. Incluso las
+    imágenes que aparentan ser naturales o espontáneas están cargadas de significados,
+    referencias culturales y construcciones simbólicas. En esta imagen se analiza cómo
+    cada elemento visual funciona como un signo que construye sentido.
+  </p>
+
+  @if (analisis.length > 0) {
+
+    @for (item of analisis; track item.secure_url) {
+
+      <div class="analysis-box">
+
+        <h2 class="main-title">
+          {{ item.display_name }}
+        </h2>
+
+        <div class="content-wrapper">
+
+          <div class="image-container">
+            <img
+              [src]="item.secure_url"
+              [alt]="item.display_name"
+            />
+          </div>
+
+          <div class="text-container">
+
+            <p>
+              {{ item.explicacion }}
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    }
+
+  }
+
+</div>
