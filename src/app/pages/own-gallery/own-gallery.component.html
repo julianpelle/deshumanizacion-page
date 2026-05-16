@@ -1,1 +1,71 @@
-<p>own-gallery works!</p>
+@if (galeriaEstructurada.length > 0) {
+<div class="galeria-wrapper">
+  <!-- TÍTULO GLITCH ESTÁTICO -->
+  <div class="glitch-title-box">
+    <h1 class="glitch static-glitch">PRODUCCIONES FOTOGRÁFICAS<br>EN BASE A LA DESHUMANIZACION DIGITAL</h1>
+  </div>
+
+  <div class="galeria-box animate-border">
+    <!-- BARRA DE CARPETA (PRODUCCIÓN) - BOTONES MÁS CERCA -->
+    <div class="folder-bar">
+      <button class="folder-nav prev" (click)="cambiarFolder(-1)" title="Producción anterior">
+        <span class="modern-arrow">◀</span>
+        <span class="nav-label">PRODUCCION ANT.</span>
+      </button>
+
+      <div class="folder-info">
+        <h2>PRODUCCIÓN {{ indiceFolderActual + 1 }}</h2>
+        <p>{{ folderActual?.general }}</p>
+      </div>
+
+      <button class="folder-nav next" (click)="cambiarFolder(1)" title="Producción siguiente">
+        <span class="nav-label">PRODUCCION SIG.</span>
+        <span class="modern-arrow">▶</span>
+      </button>
+    </div>
+
+    <!-- GRID: FOTO IZQUIERDA | TEXTO DERECHA -->
+    <div class="grid-container">
+      <!-- LADO IZQUIERDO: VISOR + OVERLAY -->
+      <div class="image-side">
+        <div class="viewer">
+          <button class="img-nav prev" (click)="cambiarImagen(-1)" title="Foto anterior">
+            <span class="modern-arrow-icon">❮</span>
+          </button>
+
+          <div class="image-box">
+            <img [src]="imagenActual?.secure_url" [alt]="imagenActual?.display_name" loading="eager" />
+            <div class="image-overlay">
+               <button class="skip-encuadre-btn" (click)="saltarSiguienteDisplayName()" title="Cambiar encuadre">
+                <span class="skip-icon">⟳</span> OTRO MOTIVO
+              </button>
+              <div class="image-counter">
+                <span class="counter-current">{{ indiceImagenActual + 1 }}</span>
+                <span class="counter-sep">/</span>
+                <span class="counter-total">{{ folderActual?.imagenes?.length }}</span>
+              </div>
+
+            </div>
+          </div>
+
+          <button class="img-nav next" (click)="cambiarImagen(1)" title="Foto siguiente">
+            <span class="modern-arrow-icon">❯</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- LADO DERECHO: DESCRIPCIÓN CON BOX INTERNA GRIS OSCURO -->
+      <div class="description-side">
+        <div class="desc-inner-box animate-inner-glow">
+          <h3>{{ imagenActual?.display_name }}</h3>
+          <p>{{ imagenActual?.explicacion }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+} @else {
+<div class="loading-glitch-box">
+  <p class="glitch loading-text">Cargando galería...</p>
+</div>
+}

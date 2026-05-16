@@ -20,6 +20,10 @@ export class PicturesServiceService {
     return this.http.get<any[]>(
       'imagedata.json'
     );
-
+  }
+ getFolderData(): Observable<any[]> {
+    return this.http.get<any[]>(
+      'folderdata.json'
+    );
 }
 }

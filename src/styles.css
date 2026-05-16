@@ -14,9 +14,8 @@ body {
   background: #0a0a0c;
   font-family: 'Segoe UI', 'Arial', sans-serif;
   overflow-x: hidden;
-  display: flex;
-  justify-content: center;
   color: #e0e0e0;
+  display: block; /* 👈 IMPORTANTE */
 }
 
 /* =========================
@@ -59,19 +58,13 @@ body::before {
 .reveal {
   opacity: 0;
   transform: translateY(40px) scale(0.98);
-
-  transition:
-    opacity 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1),
-    transform 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-
-  will-change: opacity, transform;
+  transition: opacity 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1);
 }
 
 .reveal.active {
   opacity: 1;
   transform: translateY(0) scale(1);
 }
-
 /* =========================
    APP
 ========================= */
@@ -80,10 +73,12 @@ body::before {
   display: flex;
   flex-direction: column;
   gap: 0;
+
 }
 
 app-home-page,
-app-kalvar-pictures-page {
+app-kalvar-pictures-page,
+app-own-gallery {
   display: block;
   width: 100%;
   margin: 0;
