@@ -1,30 +1,24 @@
 <div class="container">
 
-  <p>
+  <h2>
     Viste un QR y decidiste escanearlo solo para ver si te llevaba a algún lado.
     eso también es
-  </p>
+  </h2>
 
   <h1 class="glitch">
     DESHUMANIZACIÓN
   </h1>
 
+@if (video) {
   <div class="video">
-
-    @if (video) {
-
-      <video
-        autoplay
-        muted
-        controls
-        playsinline>
-
-        <source [src]="video" type="video/mp4">
-
-      </video>
-
-    }
-
+    <video autoplay muted controls playsinline>
+      <source [src]="video" type="video/mp4">
+    </video>
   </div>
+} @else {
+  <div class="no-video">
+    <h1 class="glitch">Próximamente estará el ensayo...</h1>
+  </div>
+}
 
 </div>
