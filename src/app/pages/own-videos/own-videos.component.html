@@ -1,0 +1,120 @@
+@if (videoActual) {
+
+<div class="videos-page">
+
+  <!-- TITULO -->
+  <div class="videos-title-box">
+
+    <h1>
+      OTROS VIDEOS QUE REPRESENTAN<br>
+      LA DESHUMANIZACION
+    </h1>
+
+  </div>
+
+  <!-- BOX PRINCIPAL -->
+  <div class="video-main-box">
+
+    <!-- FLECHA IZQUIERDA -->
+    <button
+      class="video-nav prev"
+      (click)="cambiarVideo(-1)"
+    >
+      ❮
+    </button>
+
+    <!-- CONTENIDO -->
+    <div class="video-content">
+
+      <!-- HEADER -->
+      <div class="video-header">
+
+        <h2>
+          {{ videoActual.display_name }}
+        </h2>
+
+        <div class="video-counter">
+
+          <span>
+            {{ indiceVideoActual + 1 }}
+          </span>
+
+          /
+
+          <span>
+            {{ videos.length }}
+          </span>
+
+        </div>
+
+      </div>
+
+      <!-- VIDEO -->
+      <div
+  class="video-wrapper"
+  (touchstart)="onTouchStart($event)"
+  (touchend)="onTouchEnd($event)"
+>
+
+        <video
+          [src]="videoActual.secure_url"
+          controls
+          preload="auto"
+    playsinline
+        ></video>
+
+      </div>
+
+      <!-- EXPLICACION -->
+      <div class="video-description">
+
+        <p>
+          {{ videoActual.explicacion }}
+        </p>
+
+      </div>
+
+      <!-- ANALISIS FINAL -->
+      <div class="final-analysis-box">
+
+        <p>
+          La diferencia entre cada video radica en la forma de comunicar la deshumanización digital.
+        </p>
+
+        <p>
+          “Cuatro Paredes” lo hace desde un enfoque más exagerado (aunque basado en situaciones
+          reales), mostrando cómo la digitalización nos absorbió hasta convertirnos en presos de la
+          tecnología: encerrados en nuestras casas no por decisión propia, sino impulsados por la
+          pérdida de percepción del tiempo causada por el uso constante de dispositivos
+          tecnológicos.
+        </p>
+
+        <p>
+          En cambio, “Lo mismo, diferente” comunica la deshumanización mostrando cómo muchas
+          problemáticas sociológicas continúan existiendo en la actualidad, pero transformadas por
+          la presencia de lo digital.
+        </p>
+
+        <p>
+          Esto se ve agravado por la globalización y la constante sobrecarga de estímulos que
+          recibimos, permitiendo que un dispositivo inerte sea capaz de influir en nuestras
+          emociones e incluso de generar prejuicios.
+        </p>
+
+      </div>
+
+    </div>
+
+    <!-- FLECHA DERECHA -->
+    <button
+      class="video-nav next"
+      (click)="cambiarVideo(1)"
+    >
+      ❯
+    </button>
+
+  </div>
+
+</div>
+
+}

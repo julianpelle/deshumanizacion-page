@@ -1,0 +1,895 @@
+/* =========================================================
+   VIDEOS PAGE - RETROWAVE / NEON
+   CORREGIDO: SIN SCROLL INTERNO Y PEGADO AL FOOTER
+========================================================= */
+
+.videos-page {
+  position: relative;
+  width: 100%;
+  background: #0a0a0c;
+  padding: 60px 20px;
+  box-sizing: border-box;
+  color: #e0e0e0;
+
+  /* CAMBIO CLAVE: Cambiamos visible por hidden temporalmente para el eje X
+     y forzamos a que el Y maneje el scroll global del viewport, no uno interno */
+  overflow-x: hidden;
+  overflow-y: hidden; /* Evita que este contenedor genere su propio scroll */
+
+  height: auto;
+  margin-bottom: 0;
+  flex: 1;
+}
+/* Grid retrowave */
+.videos-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: linear-gradient(rgba(106, 90, 125, 0.12) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(106, 90, 125, 0.12) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* Efecto noise */
+.videos-page::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.15;
+}
+
+/* =========================================================
+   TITULO GLITCH
+========================================================= */
+.videos-title-box {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.videos-title-box h1 {
+  font-size: clamp(1.8rem, 6vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.3;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #e0e0e0;
+  text-shadow: 0 0 5px #fff, 0 0 10px #b77dff, 0 0 20px #b77dff, 0 0 30px #9b59b6;
+  white-space: normal;
+  word-break: break-word;
+}
+
+/* =========================================================
+   BOX PRINCIPAL (con borde neón animado y reflejo)
+========================================================= */
+.video-main-box {
+  position: relative;
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  /* CAMBIO CLAVE: Evitamos que las flechas absolutas estiren este contenedor */
+  overflow: visible;
+}
+
+.video-content {
+  width: 100%;
+  background: rgba(10, 10, 15, 0.75);
+  backdrop-filter: blur(12px);
+  border: 2px solid rgba(183, 125, 255, 0.5);
+  border-radius: 28px;
+  padding: 35px;
+  box-sizing: border-box;
+  position: relative;
+  transition: all 0.3s ease;
+  animation: videoBorderPulse 3s infinite alternate;
+  overflow: visible;
+}
+
+@keyframes videoBorderPulse {
+  0% {
+    border-color: rgba(183, 125, 255, 0.3);
+    box-shadow: 0 0 5px rgba(155, 89, 182, 0.2);
+  }
+  100% {
+    border-color: rgba(224, 176, 255, 0.8);
+    box-shadow: 0 0 20px rgba(183, 125, 255, 0.5);
+  }
+}
+
+/* Efecto de brillo deslizante */
+.video-content::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(115deg, transparent 30%, rgba(183, 125, 255, 0.06) 50%, transparent 70%);
+  transform: rotate(25deg);
+  animation: shineVideo 8s infinite;
+  pointer-events: none;
+}
+
+@keyframes shineVideo {
+  0% { transform: translateX(-100%) rotate(25deg); opacity: 0; }
+  20% { opacity: 0.4; }
+  40% { transform: translateX(100%) rotate(25deg); opacity: 0; }
+  100% { transform: translateX(200%) rotate(25deg); opacity: 0; }
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+.video-header {
+  text-align: center;
+  margin-bottom: 30px;
+  border-bottom: 1px dashed rgba(183, 125, 255, 0.5);
+  padding-bottom: 20px;
+}
+
+.video-header h2 {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  margin-bottom: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #e0b0ff;
+  text-shadow: 0 0 5px #9b59b6;
+}
+
+.video-counter {
+  font-size: 1rem;
+  color: #ccc;
+  font-family: monospace;
+  background: rgba(0,0,0,0.5);
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 30px;
+  border-left: 3px solid #b77dff;
+}
+
+/* =========================================================
+   VIDEO
+========================================================= */
+.video-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.video-wrapper video {
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 18px;
+  display: block;
+  transition: filter 0.3s, transform 0.3s;
+  box-shadow: 0 0 0 2px rgba(183,125,255,0.3), 0 10px 25px -5px black;
+}
+
+.video-wrapper video:hover {
+  filter: brightness(1.02);
+  transform: scale(1.01);
+}
+
+/* =========================================================
+   FLECHAS DE NAVEGACIÓN (modernas, neon)
+========================================================= */
+.video-nav {
+  position: absolute;
+  /* CAMBIO CLAVE: En lugar de top: 30%, usamos una posición fija respecto al viewport
+     o alineada al contenedor del video para que no flote sobre el texto largo */
+  top: 450px; /* Altura promedio estimada donde se encuentra el reproductor de video */
+  transform: translateY(-20%);
+  width: 52px;
+  height: 52px;
+  border: 1px solid #b77dff;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  color: #e0b0ff;
+  font-size: 1.8rem;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 8px rgba(183,125,255,0.3);
+}
+
+.video-nav.prev {
+  left: 25px; /* Las sacamos un poco hacia afuera del contenedor */
+}
+
+.video-nav.next {
+  right: 25px;
+}
+
+.video-nav:hover {
+  background: #9b59b6;
+  border-color: #fff;
+  box-shadow: 0 0 18px #b77dff;
+  transform: translateY(-50%) scale(1.08);
+  color: white;
+}
+
+@media (max-width: 1100px) {
+  .video-main-box {
+    padding: 0 20px;
+  }
+  .video-nav.prev {
+    left: -10px;
+  }
+  .video-nav.next {
+    right: -10px;
+  }
+}
+
+/* =========================================================
+   EXPLICACION (descripción del video)
+========================================================= */
+.video-description {
+  width: 100%;
+  margin-bottom: 40px;
+  background: #1e1e24;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.4), inset 0 0 0 1px rgba(183,125,255,0.2);
+  animation: descBoxPulse 3s infinite alternate, boxGlow 4s infinite;
+}
+
+@keyframes descBoxPulse {
+  0% { background: #1a1a20; box-shadow: 0 5px 15px rgba(0,0,0,0.4), inset 0 0 0 1px rgba(183,125,255,0.1); }
+  100% { background: #22222a; box-shadow: 0 8px 25px rgba(155,89,182,0.2), inset 0 0 5px rgba(183,125,255,0.3); }
+}
+
+@keyframes boxGlow {
+  0% { border-left: 3px solid rgba(183,125,255,0.3); }
+  50% { border-left: 3px solid #e0b0ff; box-shadow: -5px 0 12px rgba(183,125,255,0.2); }
+  100% { border-left: 3px solid rgba(183,125,255,0.3); }
+}
+
+.video-description p {
+  text-align: center;
+  line-height: 1.8;
+  font-size: 1.05rem;
+  color: #f5f5f5;
+  text-shadow: 0 0 1px rgba(0,0,0,0.5);
+  margin: 0;
+}
+
+/* =========================================================
+   ANALISIS FINAL (caja interna)
+========================================================= */
+.final-analysis-box {
+  width: 100%;
+  background: #1e1e24;
+  border-radius: 20px;
+  padding: 30px;
+  box-sizing: border-box;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.4), inset 0 0 0 1px rgba(183,125,255,0.2);
+  animation: analysisBoxPulse 4s infinite alternate;
+}
+
+@keyframes analysisBoxPulse {
+  0% { background: #1a1a20; border-color: rgba(183,125,255,0.2); }
+  100% { background: #22222a; border-color: rgba(224,176,255,0.5); box-shadow: 0 0 10px rgba(155,89,182,0.2); }
+}
+
+.final-analysis-box p {
+  line-height: 1.9;
+  color: #e0e0e0;
+  margin-bottom: 20px;
+  font-size: 1rem;
+  text-shadow: 0 0 1px rgba(0,0,0,0.3);
+}
+
+.final-analysis-box p:last-child {
+  margin-bottom: 0;
+}
+/* =========================================================
+   RESPONSIVE AVANZADO - VIDEOS PAGE
+========================================================= */
+
+
+/* =========================================================
+   TABLET / MOBILE GRANDE
+========================================================= */
+@media (max-width: 900px) {
+
+  .videos-page {
+    padding: 35px 14px;
+  }
+
+  .videos-title-box h1 {
+    font-size: clamp(1.6rem, 5vw, 2.2rem);
+    letter-spacing: 2px;
+  }
+
+  .video-content {
+    padding: 20px;
+    border-radius: 22px;
+  }
+
+  .video-header h2 {
+    font-size: 1.4rem;
+  }
+
+  /* mejora touch */
+  .video-wrapper {
+    touch-action: pan-y;
+  overflow: visible !important;
+    border-radius: 16px;
+
+    /* IMPORTANTE */
+    position: relative;
+    margin-bottom: 55px;
+  }
+
+  .video-wrapper video {
+    width: 100%;
+    border-radius: 16px;
+    display: block;
+  }
+  /* indicador visual opcional */
+  .video-wrapper::after {
+
+    content: "← desliza →";
+
+    position: absolute;
+
+    /* AHORA QUEDA ENTRE VIDEO Y DESCRIPCIÓN */
+    bottom: -38px;
+
+    left: 50%;
+    transform: translateX(-50%);
+
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+
+    color: rgba(255,255,255,0.75);
+
+    background: rgba(0,0,0,0.55);
+
+    padding: 6px 14px;
+
+    border-radius: 30px;
+
+    backdrop-filter: blur(6px);
+
+    border: 1px solid rgba(183,125,255,0.3);
+
+    pointer-events: none;
+
+    z-index: 5;
+
+    white-space: nowrap;
+  }
+
+  /* FLECHAS */
+  /* ocultar flechas */
+  .video-nav {
+    display: none !important;
+  }
+  .video-nav.prev {
+    left: 8px;
+  }
+
+  .video-nav.next {
+    right: 8px;
+  }
+
+  .video-nav:hover {
+    transform: translateY(-50%) scale(1.05);
+  }
+
+
+  .video-description {
+
+    /* separa bien el texto */
+    margin-top: 10px;
+
+  }
+  .video-description p {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    text-align: left;
+  }
+
+  .final-analysis-box {
+    padding: 20px;
+  }
+
+  .final-analysis-box p {
+    font-size: 0.95rem;
+    line-height: 1.8;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE COMPLETO - VIDEOS PAGE
+   MOBILE + TABLETS + IPAD + LANDSCAPE
+========================================================= */
+
+/* =========================================================
+   MOBILE PEQUEÑO
+========================================================= */
+@media (max-width: 600px) {
+
+  .videos-page {
+    padding: 24px 10px;
+  }
+
+  .videos-page::before {
+    background-size: 28px 28px;
+    opacity: 0.35;
+  }
+
+  .videos-title-box {
+    margin-bottom: 24px;
+  }
+
+  .videos-title-box h1 {
+    font-size: 1.35rem;
+    line-height: 1.2;
+    letter-spacing: 1px;
+    padding: 0 4px;
+  }
+
+  .video-main-box {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .video-content {
+    padding: 14px;
+    border-radius: 18px;
+    backdrop-filter: blur(5px);
+  }
+
+  .video-header {
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+  }
+
+  .video-header h2 {
+    font-size: 1.05rem;
+    line-height: 1.3;
+    letter-spacing: 1px;
+  }
+
+  .video-counter {
+    font-size: 0.76rem;
+    padding: 4px 10px;
+  }
+
+  /* VIDEO + SWIPE */
+  .video-wrapper {
+
+    position: relative;
+
+    touch-action: pan-y;
+
+    overflow: visible !important;
+
+    border-radius: 14px;
+
+    margin-bottom: 52px;
+  }
+
+  .video-wrapper video {
+
+    width: 100%;
+
+    border-radius: 14px;
+
+    display: block;
+
+    object-fit: contain;
+  }
+
+  /* INDICADOR */
+  .video-wrapper::after {
+
+    content: "← desliza →";
+
+    position: absolute;
+
+    left: 50%;
+    bottom: -34px;
+
+    transform: translateX(-50%);
+
+    z-index: 20;
+
+    white-space: nowrap;
+
+    font-size: 0.68rem;
+
+    letter-spacing: 1px;
+
+    color: rgba(255,255,255,0.82);
+
+    background: rgba(0,0,0,0.58);
+
+    padding: 5px 12px;
+
+    border-radius: 999px;
+
+    border: 1px solid rgba(183,125,255,0.35);
+
+    backdrop-filter: blur(6px);
+
+    pointer-events: none;
+  }
+
+  /* OCULTAR FLECHAS */
+  .video-nav {
+    display: none !important;
+  }
+
+  .video-description {
+    margin-top: 8px;
+    margin-bottom: 22px;
+    padding: 14px;
+    border-radius: 14px;
+  }
+
+  .video-description p {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    text-align: left;
+  }
+
+  .final-analysis-box {
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  .final-analysis-box p {
+    font-size: 0.88rem;
+    line-height: 1.75;
+  }
+}
+
+/* =========================================================
+   MOBILE GRANDE + TABLETS
+========================================================= */
+@media (min-width: 601px) and (max-width: 900px) {
+
+  .videos-page {
+    padding: 35px 14px;
+  }
+
+  .videos-title-box {
+    margin-bottom: 30px;
+  }
+
+  .videos-title-box h1 {
+    font-size: clamp(1.6rem, 5vw, 2.2rem);
+    letter-spacing: 2px;
+    line-height: 1.25;
+  }
+
+  .video-content {
+    padding: 20px;
+    border-radius: 22px;
+  }
+
+  .video-header h2 {
+    font-size: 1.4rem;
+  }
+
+  /* VIDEO + SWIPE */
+  .video-wrapper {
+
+    position: relative;
+
+    touch-action: pan-y;
+
+    overflow: visible !important;
+
+    border-radius: 16px;
+
+    margin-bottom: 58px;
+  }
+
+  .video-wrapper video {
+
+    width: 100%;
+
+    border-radius: 16px;
+
+    display: block;
+
+    object-fit: contain;
+  }
+
+  /* INDICADOR */
+  .video-wrapper::after {
+
+    content: "← desliza →";
+
+    position: absolute;
+
+    left: 50%;
+    bottom: -38px;
+
+    transform: translateX(-50%);
+
+    z-index: 20;
+
+    white-space: nowrap;
+
+    font-size: 0.75rem;
+
+    letter-spacing: 1px;
+
+    color: rgba(255,255,255,0.8);
+
+    background: rgba(0,0,0,0.58);
+
+    padding: 6px 14px;
+
+    border-radius: 999px;
+
+    border: 1px solid rgba(183,125,255,0.35);
+
+    backdrop-filter: blur(6px);
+
+    pointer-events: none;
+  }
+
+  /* OCULTAR FLECHAS */
+  .video-nav {
+    display: none !important;
+  }
+
+  .video-description {
+    margin-top: 10px;
+    margin-bottom: 28px;
+    padding: 18px;
+  }
+
+  .video-description p {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    text-align: left;
+  }
+
+  .final-analysis-box {
+    padding: 20px;
+  }
+
+  .final-analysis-box p {
+    font-size: 0.95rem;
+    line-height: 1.8;
+  }
+}
+
+/* =========================================================
+   TABLETS + IPAD + LANDSCAPE
+========================================================= */
+@media (min-width: 768px) and (max-width: 901px) {
+
+  .videos-page {
+    padding: 45px 22px;
+  }
+
+  .videos-title-box {
+    margin-bottom: 35px;
+  }
+
+  .videos-title-box h1 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    letter-spacing: 3px;
+  }
+
+  .video-main-box {
+    max-width: 100%;
+  }
+
+  .video-content {
+    padding: 26px;
+    border-radius: 24px;
+  }
+
+  .video-header h2 {
+    font-size: 1.8rem;
+  }
+
+  /* VIDEO + SWIPE */
+  .video-wrapper {
+
+    position: relative;
+
+    touch-action: pan-y;
+
+    overflow: visible !important;
+
+    border-radius: 18px;
+
+    margin-bottom: 62px;
+  }
+
+  .video-wrapper video {
+
+    width: 100%;
+
+    max-width: 100%;
+
+    border-radius: 18px;
+
+    display: block;
+
+    object-fit: cover;
+  }
+
+  /* INDICADOR */
+  .video-wrapper::after {
+
+    content: "← desliza →";
+
+    position: absolute;
+
+    left: 50%;
+    bottom: -42px;
+
+    transform: translateX(-50%);
+
+    z-index: 20;
+
+    white-space: nowrap;
+
+    font-size: 0.82rem;
+
+    letter-spacing: 1px;
+
+    color: rgba(255,255,255,0.82);
+
+    background: rgba(0,0,0,0.58);
+
+    padding: 7px 16px;
+
+    border-radius: 999px;
+
+    border: 1px solid rgba(183,125,255,0.35);
+
+    backdrop-filter: blur(6px);
+
+    pointer-events: none;
+  }
+
+  /* OCULTAR FLECHAS */
+  .video-nav {
+    display: none !important;
+  }
+
+  .video-description {
+    margin-top: 12px;
+    margin-bottom: 30px;
+    padding: 22px;
+  }
+
+  .video-description p {
+    font-size: 1rem;
+    line-height: 1.85;
+    text-align: left;
+  }
+
+  .final-analysis-box {
+    padding: 24px;
+  }
+
+  .final-analysis-box p {
+    font-size: 1rem;
+    line-height: 1.9;
+  }
+}
+
+/* =========================================================
+   DESKTOP
+========================================================= */
+@media (min-width: 1367px) {
+
+  .video-main-box {
+    max-width: 1320px;
+  }
+
+  .video-wrapper {
+    position: relative;
+  }
+
+  /* FLECHAS SOLO DESKTOP */
+  .video-nav {
+
+    display: flex;
+
+    top: 30%;
+
+    transform: translateY(-50%);
+  }
+
+  .video-nav.prev {
+    left: 26px;
+  }
+
+  .video-nav.next {
+    right: 26px;
+  }
+
+  .video-nav:hover {
+    transform: translateY(-50%) scale(1.08);
+  }
+
+  /* SACAR INDICADOR */
+  .video-wrapper::after {
+    display: none;
+  }
+}
+
+/* =========================================================
+   NOTEBOOKS / IPAD PRO
+========================================================= */
+@media (min-width: 1000px) and (max-width: 1366px) {
+
+  .videos-page {
+    padding: 50px 28px;
+  }
+
+  .videos-title-box h1 {
+    font-size: 2.7rem;
+  }
+
+  .video-content {
+    padding: 30px;
+  }
+
+  .video-header h2 {
+    font-size: 2rem;
+  }
+
+  .video-wrapper video {
+    max-height: 700px;
+  }
+
+  .video-description p,
+  .final-analysis-box p {
+    font-size: 1rem;
+  }
+}
+
+/* =========================================================
+   IPAD PRO LANDSCAPE
+========================================================= */
+@media (min-width: 1024px) and (max-width: 1366px) {
+
+  .videos-page {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .video-content {
+    border-radius: 26px;
+  }
+
+  .video-wrapper video {
+    width: 100%;
+    object-fit: cover;
+  }
+}

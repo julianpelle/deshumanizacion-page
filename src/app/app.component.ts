@@ -4,11 +4,12 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { OwnGalleryComponent } from './pages/own-gallery/own-gallery.component';
 import { AnalysisPageComponent } from './pages/analysis-page/analysis-page.component';
 import { OwnVideosComponent } from './pages/own-videos/own-videos.component';
+import { FooterComponent } from "./components/footer/footer.component";
 
 
 @Component({
   selector: 'app-root',
-  imports: [HomePageComponent,KalvarPicturesPageComponent,OwnGalleryComponent,AnalysisPageComponent,OwnVideosComponent],
+  imports: [HomePageComponent, KalvarPicturesPageComponent, OwnGalleryComponent, AnalysisPageComponent, OwnVideosComponent, FooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
