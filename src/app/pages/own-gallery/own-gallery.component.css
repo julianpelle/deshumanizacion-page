@@ -1,13 +1,13 @@
 /* =========================
-   GALERIA WRAPPER
+   GALERIA WRAPPER CON MÁRGENES LATERALES
 ========================= */
 .galeria-wrapper {
   width: 100%;
-  padding: 20px 4% 40px;
+  padding: 20px 4% 40px;  /* márgenes izquierdo/derecho */
   box-sizing: border-box;
 }
 
-/* TÍTULO GLITCH ESTÁTICO */
+/* TÍTULO GLITCH ESTÁTICO (sin animación) */
 .glitch-title-box {
   width: 100%;
   text-align: center;
@@ -23,7 +23,7 @@
   letter-spacing: 4px;
 }
 
-/* BOX PRINCIPAL CON BORDE ANIMADO */
+/* BOX PRINCIPAL CON BORDE ANIMADO Y REFLEJO */
 .galeria-box {
   width: 100%;
   background: rgba(5, 5, 10, 0.7);
@@ -60,8 +60,14 @@
 }
 
 @keyframes borderPulse {
-  0% { border-color: rgba(183, 125, 255, 0.4); box-shadow: 0 0 5px rgba(155, 89, 182, 0.2); }
-  100% { border-color: rgba(224, 176, 255, 0.9); box-shadow: 0 0 25px rgba(183, 125, 255, 0.6); }
+  0% {
+    border-color: rgba(183, 125, 255, 0.4);
+    box-shadow: 0 0 5px rgba(155, 89, 182, 0.2);
+  }
+  100% {
+    border-color: rgba(224, 176, 255, 0.9);
+    box-shadow: 0 0 25px rgba(183, 125, 255, 0.6);
+  }
 }
 
 @keyframes scanlineMove {
@@ -69,16 +75,16 @@
   100% { background-position: 0 20px; }
 }
 
-/* BARRA DE CARPETA (PRODUCCIÓN) - DESKTOP */
+/* BARRA DE CARPETA - BOTONES MÁS CERCA */
 .folder-bar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 20px;
+  justify-content: center;
+  gap: 30px;
   margin-bottom: 35px;
+  flex-wrap: wrap;
   border-bottom: 1px dashed rgba(183, 125, 255, 0.5);
   padding-bottom: 20px;
-  flex-wrap: nowrap;
 }
 
 .folder-nav {
@@ -92,7 +98,6 @@
   align-items: center;
   gap: 8px;
   backdrop-filter: blur(4px);
-  flex-shrink: 0;
 }
 
 .folder-nav .nav-label {
@@ -119,8 +124,7 @@
 .folder-info {
   text-align: center;
   flex: 0 1 auto;
-  min-width: 250px;
-  max-width: 60%;
+  min-width: 200px;
 }
 
 .folder-info h2 {
@@ -132,35 +136,36 @@
 }
 
 .folder-info p {
-  font-size: 1.15rem;
+  font-size: 1.15rem;      /* más grande que antes */
   line-height: 1.5;
   max-width: 90%;
   margin: 0 auto;
-  color: #f0f0f0;
+  color: #f0f0f0;          /* más blanco para contraste */
   font-weight: 400;
   letter-spacing: 0.5px;
 }
-
-/* GRID DOS COLUMNAS (DESKTOP) */
+/* GRID DOS COLUMNAS */
 .grid-container {
   display: grid;
   grid-template-columns: 1fr 0.9fr;
   gap: 30px;
-  align-items: start;  /* antes 'stretch' causaba desborde */
+  align-items: stretch;     /* ← clave: ambas columnas misma altura */
 }
-
 /* LADO IMAGEN */
+
 .image-side {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  height: 100%;             /* para que ocupe toda la altura de la fila */
 }
 
 .viewer {
+  flex: 1;                  /* que ocupe todo el espacio disponible */
   display: flex;
   align-items: center;
   gap: 12px;
 }
+
 
 .img-nav {
   background: rgba(0, 0, 0, 0.65);
@@ -176,7 +181,6 @@
   transition: all 0.2s;
   position: relative;
   overflow: hidden;
-  flex-shrink: 0;
 }
 
 .img-nav .modern-arrow-icon {
@@ -186,6 +190,7 @@
   line-height: 1;
 }
 
+/* Mini reflejo en botones */
 .img-nav::after {
   content: '';
   position: absolute;
@@ -217,23 +222,23 @@
 
 .image-box {
   flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
   border-radius: 16px;
   overflow: hidden;
   background: #000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
-
 .image-box img {
   width: 100%;
   height: auto;
   display: block;
   object-fit: contain;
-  max-height: 65vh;
+  max-height: 70vh;         /* o el valor que prefieras */
   transition: filter 0.3s, transform 0.3s;
 }
+
 
 .image-box:hover img {
   filter: brightness(1.05) contrast(1.02);
@@ -312,11 +317,11 @@
   font-size: 1rem;
 }
 
-/* LADO DESCRIPCIÓN */
+/* LADO DESCRIPCIÓN - BOX INTERNA GRIS OSCURO CON ANIMACIÓN */
 .description-side {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  height: 100%;             /* también ocupa toda la altura */
 }
 
 .desc-inner-box {
@@ -326,15 +331,21 @@
   box-shadow: 0 5px 15px rgba(0,0,0,0.4), inset 0 0 0 1px rgba(183,125,255,0.2);
   transition: all 0.3s ease;
   animation: innerBoxPulse 3s infinite alternate, boxGlow 4s infinite;
-  height: 100%;
+  height: 100%;             /* la caja gris se estira hasta abajo */
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: flex-start; /* el contenido empieza arriba, sin estirarse */
 }
 
 @keyframes innerBoxPulse {
-  0% { background: #1a1a20; box-shadow: 0 5px 15px rgba(0,0,0,0.4), inset 0 0 0 1px rgba(183,125,255,0.1); }
-  100% { background: #22222a; box-shadow: 0 8px 25px rgba(155,89,182,0.2), inset 0 0 5px rgba(183,125,255,0.3); }
+  0% {
+    background: #1a1a20;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4), inset 0 0 0 1px rgba(183,125,255,0.1);
+  }
+  100% {
+    background: #22222a;
+    box-shadow: 0 8px 25px rgba(155,89,182,0.2), inset 0 0 5px rgba(183,125,255,0.3);
+  }
 }
 
 @keyframes boxGlow {
@@ -355,7 +366,8 @@
   display: inline-block;
   padding-bottom: 8px;
   animation: titleNeonFlicker 2s infinite;
-  margin-top: 0;
+    margin-top: 0;
+
 }
 
 @keyframes titleNeonFlicker {
@@ -369,137 +381,414 @@
   line-height: 1.7;
   text-shadow: 0 0 2px rgba(0,0,0,0.5);
   margin: 0;
+    flex-grow: 0;  /* no empuja hacia abajo, se queda en su sitio */
+
+}
+/* =========================
+   RESPONSIVE - 1000px a 1366px (iPad Pro / laptops medianas)
+========================= */
+@media (min-width: 1000px) and (max-width: 1366px) {
+
+  .galeria-wrapper {
+    padding: 18px 3% 35px;
+  }
+
+  .galeria-box {
+    padding: 22px 24px;
+  }
+
+  .folder-bar {
+    gap: 20px;
+  }
+
+  .folder-info h2 {
+    font-size: 2rem;
+  }
+
+  .folder-info p {
+    font-size: 1.05rem;
+  }
+
+  .grid-container {
+    gap: 22px;
+  }
+
+  .image-box img {
+    max-height: 65vh;
+  }
+
+  .desc-inner-box {
+    padding: 18px 20px;
+  }
+
+  .desc-inner-box h3 {
+    font-size: 1.6rem;
+  }
+
+  .desc-inner-box p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
 }
 
+
 /* =========================
-   RESPONSIVE: TABLET (hasta 900px)
+   RESPONSIVE - TABLET (hasta 900px)
 ========================= */
 @media (max-width: 900px) {
+
   .galeria-wrapper {
     padding: 20px 3%;
   }
+
   .grid-container {
     grid-template-columns: 1fr;
     gap: 25px;
   }
+
   .folder-bar {
+    gap: 15px;
     flex-direction: column;
-    justify-content: center;
   }
+
   .folder-info {
     min-width: unset;
-    max-width: 100%;
   }
-  .image-box img {
-    max-height: 55vh;
+
+  .folder-info h2 {
+    font-size: 1.7rem;
   }
+
+  .folder-info p {
+    font-size: 1rem;
+  }
+
   .description-side {
     text-align: center;
   }
+
   .desc-inner-box h3 {
     border-bottom: 1px dashed #b77dff;
-    display: inline-block;
+  }
+
+  .image-box img {
+    max-height: 60vh;
   }
 }
 
+
 /* =========================
-   RESPONSIVE: MÓVIL (hasta 600px)
+   RESPONSIVE - MOBILE (hasta 600px)
 ========================= */
-@media (max-width: 600px) {
+/* =========================
+   MOBILE - IMAGEN MÁS PROTAGONISTA
+========================= */
+ /* ===== REORGANIZAR BARRA DE CARPETA ===== */
+ @media (max-width: 600px) {
   .folder-bar {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-areas: "info info" "prev next";
+    grid-template-areas:
+      "info info"
+      "prev next";
     gap: 12px;
+    align-items: center;
+    justify-items: center;
   }
+
   .folder-info {
     grid-area: info;
+    text-align: center;
+    width: 100%;
   }
+
   .folder-nav.prev {
     grid-area: prev;
     justify-self: end;
+    width: auto;
+    min-width: 100px;
   }
+
   .folder-nav.next {
     grid-area: next;
     justify-self: start;
+    width: auto;
+    min-width: 100px;
   }
+
+  /* Ajustes de estilo para botones */
   .folder-nav {
     padding: 6px 16px;
   }
+
   .folder-nav .nav-label {
     font-size: 0.75rem;
   }
+
+  .folder-nav .modern-arrow {
+    font-size: 1rem;
+  }
+  /* hace que el layout no "encierre" la imagen */
+  .grid-container {
+    gap: 18px;
+  }
+
+  /* reduce padding general para ganar espacio real */
   .galeria-box {
     padding: 12px;
   }
+
+  /* la caja de imagen ocupa más protagonismo */
+  .image-side {
+    width: 100%;
+  }
+
   .viewer {
     gap: 8px;
+    align-items: center;
   }
+
+  /* BOTONES más chicos para que la imagen gane espacio */
   .img-nav {
     width: 34px;
     height: 34px;
   }
+
   .img-nav .modern-arrow-icon {
     font-size: 1.3rem;
   }
-  .image-box img {
-    max-height: 70vh;
-    transform: none; /* quita scale que causaba desborde */
+
+  /* 🔥 CLAVE: la imagen crece visualmente */
+  .image-box {
+    width: 100%;
+    border-radius: 12px;
   }
+
+  .image-box img {
+    width: 100%;
+    height: auto;
+    max-height: 78vh;   /* antes era más bajo → ahora domina pantalla */
+    object-fit: contain;
+    transform: scale(1.02); /* leve zoom perceptual */
+  }
+
+  /* overlay más liviano para no tapar imagen */
   .image-overlay {
     bottom: 6px;
     padding: 0 6px;
+    gap: 6px;
   }
+
   .image-counter {
     font-size: 0.85rem;
     padding: 3px 10px;
   }
+
   .skip-encuadre-btn {
     font-size: 0.6rem;
     padding: 3px 8px;
   }
+
+  /* descripción menos dominante en mobile */
   .desc-inner-box {
     padding: 12px;
   }
+
   .desc-inner-box h3 {
     font-size: 1.2rem;
+    margin-bottom: 10px;
   }
+
   .desc-inner-box p {
     font-size: 0.9rem;
   }
 }
-
 /* =========================
-   TABLET / IPAD PRO (768px - 1366px)
-   Layout vertical (foto arriba, texto abajo)
+   IPAD PRO 1024x1366 / 1366x1024 (AJUSTE PRECISO)
+========================= */
+@media (min-width: 1024px) and (max-width: 1366px) {
+
+  .galeria-wrapper {
+    padding: 18px 3% 30px;
+  }
+
+  .galeria-box {
+    padding: 20px 22px;
+  }
+
+  /* --- HEADER --- */
+  .folder-bar {
+    gap: 18px;
+    padding-bottom: 16px;
+    margin-bottom: 25px;
+  }
+
+  .folder-info h2 {
+    font-size: 1.8rem;
+    letter-spacing: 1.5px;
+  }
+
+  .folder-info p {
+    font-size: 1rem;
+    max-width: 100%;
+  }
+
+  /* --- GRID PRINCIPAL (CLAVE) --- */
+  .grid-container {
+    grid-template-columns: 1fr !important;  /* fuerza una columna */
+    gap: 25px;
+  }
+
+  /* --- IMAGEN --- */
+  .image-side, .description-side {
+    height: auto;  /* quitar el 100% que forzaba igualdad */
+  }
+
+  .viewer {
+    gap: 10px;
+  }
+
+  .img-nav {
+    width: 44px;
+    height: 44px;
+  }
+
+  .img-nav .modern-arrow-icon {
+    font-size: 1.6rem;
+  }
+
+  .image-box {
+    border-radius: 14px;
+  }
+
+  .image-box img {
+    max-height: 60vh;
+  }
+  /* --- DESCRIPCIÓN (CLAVE PARA QUE NO QUEDE CORTA) --- */
+  .description-side {
+    text-align: center;
+  }
+
+
+  .desc-inner-box {
+    height: auto;  /* que se adapte al contenido */
+  }
+
+  .desc-inner-box h3 {
+    border-bottom: 1px dashed #b77dff;
+    display: inline-block;
+  }
+
+  .desc-inner-box p {
+    font-size: 0.98rem;
+    line-height: 1.55;
+  }
+
+  /* --- OVERLAY --- */
+  .image-overlay {
+    bottom: 10px;
+    padding: 0 10px;
+  }
+
+  .image-counter {
+    font-size: 0.95rem;
+  }
+
+  .skip-encuadre-btn {
+    font-size: 0.7rem;
+    padding: 4px 12px;
+  }
+}
+@media (min-width: 901px) {
+  .folder-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; /* cambiamos de 'center' a 'space-between' */
+    align-items: center;
+    gap: 20px;
+    flex-wrap: nowrap; /* que no se rompa en varias líneas */
+    margin-bottom: 35px;
+    border-bottom: 1px dashed rgba(183, 125, 255, 0.5);
+    padding-bottom: 20px;
+  }
+
+  .folder-info {
+    flex: 0 1 auto;
+    min-width: 250px;
+    max-width: 60%; /* evita que el texto se haga demasiado ancho */
+    text-align: center;
+  }
+
+  .folder-nav {
+    flex-shrink: 0; /* evita que los botones se encojan */
+  }
+
+  .folder-nav.prev {
+    margin-right: auto; /* empuja el centro hacia la derecha? no, pero con space-between ya funciona */
+  }
+
+  .folder-nav.next {
+    margin-left: auto;
+  }
+}
+/* =========================
+   TABLET / IPAD PRO (768px a 1366px)
+   Layout vertical: foto arriba, texto abajo
 ========================= */
 @media (min-width: 768px) and (max-width: 1366px) {
+  /* Cambiar grid a una sola columna */
   .grid-container {
     grid-template-columns: 1fr !important;
     gap: 25px;
   }
+
+  /* Ajustar alturas automáticas (no forzar igualdad) */
   .image-side,
   .description-side {
     height: auto;
   }
+
   .desc-inner-box {
     height: auto;
   }
+
+  /* Centrar texto de descripción opcionalmente */
   .description-side {
     text-align: center;
   }
+
   .desc-inner-box h3 {
     border-bottom: 1px dashed #b77dff;
     display: inline-block;
     margin-left: auto;
     margin-right: auto;
   }
+
+  /* Ajuste de márgenes y padding para iPad */
+  .galeria-wrapper {
+    padding: 20px 3%;
+  }
+
+  .galeria-box {
+    padding: 20px 24px;
+  }
+
   .image-box img {
     max-height: 55vh;
+    width: 100%;
+    object-fit: contain;
   }
+
+  /* Los botones de carpeta se mantienen horizontales */
   .folder-bar {
     flex-direction: row !important;
     justify-content: center;
     gap: 20px;
+  }
+
+  /* Overlay dentro de la imagen sigue funcionando */
+  .image-overlay {
+    bottom: 12px;
+    padding: 0 12px;
   }
 }
