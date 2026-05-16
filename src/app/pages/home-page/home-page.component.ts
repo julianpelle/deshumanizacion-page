@@ -26,7 +26,6 @@ export class HomePageComponent {
 
             this.video = data[0].secure_url;
 
-            console.log(this.video);
 
           }
 

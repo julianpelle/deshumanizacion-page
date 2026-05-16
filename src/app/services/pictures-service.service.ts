@@ -13,8 +13,14 @@ export class PicturesServiceService {
 
   constructor(private http: HttpClient) {}
 
+pingBackend() {
+  return this.http.get<{ ok: boolean }>(
+    `${this.urlBase}/api/ping`
+  );
+}
+
   getAllPicturesByFolders(NameFolder:string):Observable<any[]> {
-  return this.http.get<string[]>(`${this.urlBase}/${NameFolder}`);
+  return this.http.get<string[]>(`${this.urlBase}/fotos/${NameFolder}`);
 }
  getImagesData(): Observable<any[]> {
     return this.http.get<any[]>(

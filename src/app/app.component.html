@@ -1,19 +1,35 @@
+@if (!cargado) {
+<div class="loading-screen">
+  <h2>Despertando servidor<span class="dots"><span>.</span><span>.</span><span>.</span></span></h2>
+  <p>Puede tardar un minuto ☕</p>
+  <div class="loader"></div>
+</div>
+}
+
+ @else {
+
 <main class="app-container">
+
   <app-home-page></app-home-page>
 
-<section class="reveal">
-  <app-kalvar-pictures-page></app-kalvar-pictures-page>
-</section>
-<section class="reveal">
-  <app-own-gallery></app-own-gallery>
-</section>
-<section class="reveal">
-  <app-analysis-page></app-analysis-page>
-</section>
-<section class="reveal">
-  <app-own-videos></app-own-videos>
-</section>
+  <section class="reveal">
+    <app-kalvar-pictures-page></app-kalvar-pictures-page>
+  </section>
 
-<app-footer></app-footer>
+  <section class="reveal">
+    <app-own-gallery></app-own-gallery>
+  </section>
+
+  <section class="reveal">
+    <app-analysis-page></app-analysis-page>
+  </section>
+
+  <section class="reveal">
+    <app-own-videos></app-own-videos>
+  </section>
+
+  <app-footer></app-footer>
+
 </main>
 
+}
