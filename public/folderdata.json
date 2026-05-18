@@ -66,7 +66,15 @@
       {
         "display_name": "Desconexión vial",
         "explicacion": "Estas imagenes muestran situaciones donde las personas están tan absortas en sus dispositivos digitales que incluso mientras conducen lo utilizan poniendo en riesgo su vida, lo que simboliza la deshumanización digital al destacar cómo la tecnología puede distraer a las personas de su entorno y poner en peligro su seguridad y la de los demás, además de reflejar una desconexión total con el mundo real."
-      }
+      },
+      {
+    "display_name": "amor.exe",
+    "explicacion": "Esta imagen muestra a un hombre de espaldas interactuando de manera unilateral con el rostro de una mujer virtual en una pantalla de televisor, la cual parece responder a un render digital o software interactivo. Simboliza la deshumanización digital al exponer cómo los vínculos afectivos y la búsqueda de conexión humana se desplazan hacia interfaces artificiales y simulaciones programadas, generando un simulacro de intimidad que reemplaza el contacto real y directo por un lazo mediado por un archivo ejecutable, moldeado a adaptarse a la personalidad del humano que lo ejecuta."
+  },
+  {
+    "display_name": "Lector de QR",
+    "explicacion": "Esta imagen presenta un código QR impreso en las páginas de un libro analógico, con un ojo humano atrapado justo en el centro del patrón pixelado. Simboliza la deshumanización digital al reflejar la absorción de la identidad y la mirada del individuo por parte de los sistemas de datos algorítmicos; la experiencia tradicional de la lectura y el pensamiento crítico se ve interrumpida u obligada a pasar por el filtro de la decodificación digital, reduciendo la esencia del ser humano a un simple vector de acceso tecnológico."
+  }
     ]
   }
 ]
