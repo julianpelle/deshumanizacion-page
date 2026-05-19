@@ -148,6 +148,10 @@ p {
     width: 100%;
     max-height: 50vh;
   }
+    .ensayo-box {
+    margin: 30px 16px; /* 16px laterales, arriba/abajo 30px */
+    width: auto; /* anula el calc si existe */
+  }
 }
 
 /* =========================
@@ -202,6 +206,10 @@ p {
     width: 85%;
     max-height: 55vh;
   }
+  .ensayo-box {
+    margin: 20px 20px 30px; /* laterales 20px */
+    width: auto;
+  }
 }
 /* =========================
    IPAD PRO (1024 x 1366 / 1366 x 1024)
@@ -209,23 +217,249 @@ p {
 @media (min-width: 1000px) and (max-width: 1366px) {
 
   .container {
-    padding: 60px 40px;
-    gap: 28px;
+
+    padding:
+      40px 28px;
+
+    gap:
+      18px;
+
+    min-height:
+      auto;
   }
 
   .glitch {
-    font-size: clamp(3rem, 7vw, 6rem);
-    white-space: nowrap;
-    letter-spacing: 4px;
+
+    font-size:
+      clamp(2.8rem, 6vw, 5.2rem);
+
+    white-space:
+      normal;
+
+    line-height:
+      0.95;
+
+    letter-spacing:
+      2px;
+
+    word-break:
+      break-word;
+  }
+
+  h2 {
+
+    max-width:
+      900px;
+
+    margin:
+      0 auto;
+
+    line-height:
+      1.7;
   }
 
   p {
-    font-size: 1.1rem;
-    max-width: 800px;
+
+    font-size:
+      1rem;
+
+    max-width:
+      900px;
   }
 
   .video video {
-    width: min(850px, 100%);
-    max-height: 55vh;
+
+    width:
+      min(900px, 100%);
+
+    max-height:
+      52vh;
+
+    object-fit:
+      cover;
   }
+
+  .ensayo-box {
+
+    margin-top:
+      8px;
+  }
+}
+/* =========================================================
+   ENSAYO - CAJA EXPANDIBLE (RETROWAVE)
+========================================================= */
+.ensayo-box {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+margin: 12px auto 20px;
+  background: rgba(10, 10, 15, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(183, 125, 255, 0.5);
+  border-radius: 28px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5), 0 0 5px rgba(183, 125, 255, 0.3);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.ensayo-box::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 30%, rgba(183, 125, 255, 0.05) 50%, transparent 70%);
+  pointer-events: none;
+}
+
+.ensayo-header {
+  padding: 20px 25px 10px;
+  border-bottom: 1px dashed rgba(183, 125, 255, 0.4);
+}
+
+.ensayo-title {
+  font-family: monospace;
+  font-size: clamp(0.85rem, 3vw, 1rem);
+  letter-spacing: 2px;
+  color: #e0b0ff;
+  text-transform: uppercase;
+  background: rgba(155, 89, 182, 0.2);
+  padding: 4px 12px;
+  border-radius: 30px;
+  border-left: 3px solid #b77dff;
+}
+
+.ensayo-content {
+  padding: 20px 25px 25px;
+  color: #e0e0e0;
+}
+
+.ensayo-preview {
+  font-size: clamp(0.95rem, 1.3vw, 1.05rem);
+  line-height: 1.7;
+  margin-bottom: 20px;
+  color: #f0f0f0;
+  text-shadow: 0 0 4px rgba(0,0,0,0.3);
+}
+
+.ensayo-full {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.6s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.ensayo-content.expanded .ensayo-full {
+  max-height: 3000px; /* suficiente para todo el texto */
+}
+
+.ensayo-full p {
+  font-size: clamp(0.9rem, 1.2vw, 1rem);
+  line-height: 1.8;
+  margin-bottom: 18px;
+  color: #d0d0d0;
+}
+
+.ensayo-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(20, 20, 30, 0.9);
+  border: 1px solid #b77dff;
+  color: #e0b0ff;
+  padding: 10px 24px;
+  margin-top: 20px;
+  border-radius: 40px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(4px);
+  font-family: monospace;
+}
+
+.ensayo-toggle:hover {
+  background: #9b59b6;
+  border-color: #fff;
+  color: white;
+  box-shadow: 0 0 12px rgba(155, 89, 182, 0.6);
+  transform: scale(1.02);
+}
+
+.ensayo-toggle:active {
+  transform: scale(0.98);
+}
+
+.toggle-icon {
+  font-size: 0.7rem;
+  transition: transform 0.2s;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .ensayo-box {
+    margin: 30px 10px;
+    border-radius: 20px;
+
+  }
+  .ensayo-content {
+    padding: 15px 18px 20px;
+  }
+  .ensayo-title {
+    font-size: 0.7rem;
+  }
+  .ensayo-preview, .ensayo-full p {
+    font-size: 0.9rem;
+    line-height: 1.65;
+  }
+  .ensayo-toggle {
+    padding: 8px 18px;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .ensayo-box {
+    margin: 20px 12px;
+    width: auto;
+  }
+  .ensayo-content {
+    padding: 12px 14px 16px;
+  }
+  .ensayo-preview, .ensayo-full p {
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+}
+@media (max-width: 1366px) {
+  .ensayo-box {
+    margin-left: 16px;
+    margin-right: 16px;
+    width: calc(100% - 32px);
+  }
+}
+@media (min-width: 1024px) and (max-width: 1366px) and (orientation: landscape) {
+  .container {
+    padding: 40px 40px;
+  }
+
+  .ensayo-box {
+    width: 90%; /* o max-width: 1200px; */
+    max-width: 1100px;
+    margin: 20px auto !important; /* fuerza centrado */
+    left: auto;
+    right: auto;
+  }
+}
+.ensayo-box p {
+
+  max-width: 100%;
+
+  width: 100%;
+
+  margin-left: 0;
+  margin-right: 0;
+} .ensayo-content {
+
+  width: 100%;
+
+  box-sizing: border-box;
 }

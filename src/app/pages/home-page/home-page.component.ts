@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { PicturesServiceService } from '../../services/pictures-service.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class HomePageComponent {
   ngOnInit(): void {
 
     this.picturesService
-      .getAllPicturesByFolders('vid2')
+      .getAllPicturesByFolders('vid1')
       .subscribe({
 
         next: (data) => {
@@ -36,7 +36,29 @@ export class HomePageComponent {
       });
 
   }
+ensayoExpandido: boolean = false;
 
+@ViewChild('videoRef') videoRef!: ElementRef<HTMLDivElement>;
+
+toggleEnsayo(): void {
+
+  this.ensayoExpandido = !this.ensayoExpandido;
+
+  if (!this.ensayoExpandido && this.videoRef) {
+
+    const y =
+      this.videoRef.nativeElement.getBoundingClientRect().top
+      + window.scrollY
+      - 120;
+
+    window.scrollTo({
+
+      top: y,
+
+      behavior: 'smooth'
+    });
+  }
+}
 }
 
 

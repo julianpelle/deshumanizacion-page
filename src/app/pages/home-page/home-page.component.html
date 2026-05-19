@@ -1,17 +1,25 @@
 <div class="container">
 
-  <h2>
-    Viste un QR y decidiste escanearlo solo para ver si te llevaba a algún lado.
-    eso también es
-  </h2>
+<h2>
+  Viste un código QR y tu reacción inmediata fue escanearlo. <br>
+  No sabías quién lo había puesto ahí,
+  qué intención tenía
+  ni hacia dónde te iba a dirigir,
+  pero aun así obedeciste el estímulo.<br>
+  Un simple patrón de píxeles logró modificar tu conducta en segundos.<br>
+  Esa automatización del comportamiento,
+  donde interactuar se vuelve más rápido que cuestionar
+  y ejecutar reemplaza a decidir,
+  también es
+</h2>
 
   <h1 class="glitch">
     DESHUMANIZACIÓN
   </h1>
 
 @if (video) {
-  <div class="video">
-    <video autoplay muted controls playsinline loop>
+<div class="video" #videoRef>
+      <video autoplay muted controls playsinline loop>
       <source [src]="video" type="video/mp4">
     </video>
   </div>
@@ -21,4 +29,123 @@
   </div>
 }
 
+</div>
+<!-- ENSAYO: CAJA EXPANSIBLE -->
+<div class="ensayo-box">
+  <div class="ensayo-header">
+    <span class="ensayo-title">▸ ANÁLISIS DEL ENSAYO AUDIOVISUAL</span>
+  </div>
+
+  <div class="ensayo-content" [class.expanded]="ensayoExpandido">
+    <!-- Texto corto (siempre visible) -->
+    <p class="ensayo-preview">
+      El ensayo audiovisual aborda la deshumanización generada por el uso excesivo e indebido de
+      la tecnología en la vida cotidiana. A partir de distintas situaciones, el video busca reflexionar
+      sobre cómo los dispositivos digitales comenzaron a ocupar espacios que antes pertenecían a la
+      interacción humana, la atención y la conciencia del entorno.
+    </p>
+
+    <!-- Texto completo (oculto por defecto) -->
+    <div class="ensayo-full">
+      <p>
+        El concepto se desarrolla mediante imágenes que muestran acciones completamente
+        naturalizadas, como usar el celular mientras se maneja, ignorar el contexto físico por mirar una
+        pantalla o incluso mantener una conversación cara a cara con una inteligencia artificial. Estas
+        situaciones no buscan representar casos extremos, sino comportamientos cada vez más
+        frecuentes y aceptados socialmente.
+      </p>
+      <p>
+        El montaje funciona como el principal constructor de sentido. Las imágenes aisladas adquieren
+        significado a partir de la relación entre sí, y la superposición entre elementos humanos y
+        digitales permite construir una reflexión crítica sobre la dependencia tecnológica y la
+        transformación de los vínculos en una sociedad cada vez más mediada por pantallas.
+      </p>
+      <p>
+        A nivel visual, el video está cargado de efectos glitch y fallos VHS para remarcar que el
+        concepto no gira solamente alrededor del teléfono celular, sino de lo digitalizado en general.
+        En la segunda imagen, el glitch ayuda a duplicar recortes de la foto en los que se busca hacer
+        énfasis. Primero se rellena la pantalla con la chica usando el celular; después aparece el chico
+        que es ignorado mientras hace mates. Más adelante, se recorta específicamente el teléfono y
+        ese recorte comienza a posicionarse sobre distintas partes del cuerpo de la chica: las manos, la
+        cabeza y la mente quedan literalmente tapadas por el dispositivo.
+      </p>
+      <p>
+        Para reafirmar todavía más el concepto, en un fragmento muy veloz la imagen glitches y la cara
+        de la chica desaparece. La intención es mostrar que no importa quién realiza la acción ni el
+        rostro específico de la persona: podría ser cualquiera. Es una acción sin rostro porque muchos
+        rostros encajan perfectamente en esa situación.
+      </p>
+      <p>
+        Luego aparece una nueva escena, con una transición de un glitch muy ruidoso, que funciona
+        como puente conceptual entre la indiferencia cotidiana y la sustitución de los vínculos humanos
+        por vínculos digitales. En la imagen se ve a una persona utilizando la computadora mientras
+        otra espera frente a ella para jugar a las cartas. El juego de cartas, históricamente asociado al
+        encuentro, la conversación y el tiempo compartido, queda desplazado por la pantalla. La
+        persona presente físicamente pierde importancia frente al estímulo digital. La intención de esta
+        imagen es representar cómo muchas veces la tecnología no elimina directamente los vínculos,
+        sino que los pone en segundo plano hasta volverlos invisibles, se enfatiza en lo digital haciendo
+        un zoom in a la notebook que luego continuará la tercera imagen, que entra mediante un zoom
+        out desde la notebook. Al principio vemos este dispositivo apoyado en una mesa junto a un
+        televisor y, a medida que la imagen se aleja de su punto inicial, aparece un hombre
+        interactuando con un avatar 3D: una persona irreal, inexistente.
+      </p>
+      <p>
+        La idea es ironizar sobre cómo hoy podemos generar vínculos con modelos creados
+        específicamente para moldearse y ajustarse a nuestra personalidad.
+        En esta secuencia se realizan dos transiciones con errores de video. La primera acerca la
+        imagen al televisor y enfatiza al modelo digital; la segunda termina enfocando sus ojos. Son
+        ojos sin mirada y sin historia, imitaciones de ojos. Roland Barthes hablaba de cómo la
+        fotografía tenía una relación directa con la existencia real de aquello que mostraba: para que
+        una foto exista, eso “tuvo que haber estado ahí”. Esa era una de las grandes diferencias con el
+        dibujo. Sin embargo, hoy las inteligencias artificiales generan rostros, cuerpos e imágenes con
+        apariencia de vida, capaces incluso de alterar o reemplazar la realidad hasta hacernos dudar
+        de si lo que vemos realmente existe. El paso del tiempo obliga a replantear esa lectura de
+        Barthes, porque las imágenes digitales ya no necesitan haber existido físicamente para
+        transmitir sensación de realidad.
+      </p>
+      <p>
+        Con una transición brusca de tipo “shake” pasamos a la cuarta imagen. Este efecto acompaña
+        el movimiento natural de la foto, ya que fue tomada dentro de un auto en movimiento. Los
+        temblores le agregan dinamismo y hacen que la escena parezca todavía más real. Es
+        probablemente la imagen más directa y fácil de comprender: el teléfono se transforma en una
+        extensión tan fuerte de la propia vida que hace que las personas saquen los ojos del horizonte
+        para revisarlo, incluso mientras manejan, dando lugar a choques y accidentes. En 2024 se
+        reportaron a nivel nacional casi 6.000 muertes relacionadas con el uso del celular al volante,
+        por eso la escena está acompañada por un sonido repentino de frenada que busca generar
+        tensión inmediata y reforzar el peligro de la situación.
+      </p>
+      <p>
+        Por último, llegamos a la imagen final: un libro muy particular. En vez de contener texto escrito,
+        tiene un código QR, un QR que con un sonido de suspenso aparece fugazmente
+        interrumpiendo cada imagen. Tanto el zoom como los sonidos buscan generar intriga, ansiedad
+        y necesidad de escanearlo. La curiosidad termina ganándole al espectador.
+        Cuando parece que “no hay sonido”, en realidad de fondo hay una frecuencia de 19hz.
+        Después aparecen la notificación del celular, el tic tac del reloj, latidos y vibraciones aceleradas
+        moviéndose de izquierda a derecha. Todo esto busca sobrecargar de estímulos al espectador y
+        reforzar la necesidad de escanear el código y descifrarlo.
+      </p>
+      <p>
+        El aspecto sonoro del video está construido a partir de sonidos cotidianos y reconocibles del
+        entorno digital: vibraciones constantes, audios virales de TikTok, voces superpuestas y
+        notificaciones. Muchos de estos sonidos viajan de izquierda a derecha y en estéreo,
+        acompañados por mashups y efectos de videos de TikTok a volumen bajo. La intención es
+        representar el bombardeo permanente de información y estímulos al que estamos expuestos
+        constantemente.
+      </p>
+      <p>
+        La cantidad de glitches, fallos VHS y elementos visuales superpuestos surge justamente de esa
+        necesidad de cargar el video de estímulos, de hacer sentir que siempre está pasando algo en
+        alguna parte de la pantalla. Hacia el final, tanto el sonido como la edición comienzan a
+        acelerarse progresivamente: las voces, las vibraciones, las notificaciones y el reloj aumentan su
+        velocidad hasta generar una sensación de ansiedad, presión y pérdida de control. El objetivo es
+        simbolizar cómo el tiempo, la atención y los vínculos humanos terminan absorbidos por el ritmo
+        acelerado de la tecnología.
+      </p>
+    </div>
+
+    <button class="ensayo-toggle" (click)="toggleEnsayo()">
+      {{ ensayoExpandido ? 'LEER MENOS' : 'LEER MÁS' }}
+      <span class="toggle-icon">{{ ensayoExpandido ? '▲' : '▼' }}</span>
+    </button>
+  </div>
 </div>

@@ -1,7 +1,14 @@
 @if (!cargado) {
 <div class="loading-screen">
+    <div class="favicon-loader">
+    <img src="favicon.ico" alt="Loading">
+  </div>
+
   <h2>Despertando servidor<span class="dots"><span>.</span><span>.</span><span>.</span></span></h2>
   <p>Puede tardar un minuto ☕</p>
+    <span class="refresh-hint">
+    Si tarda demasiado, probá refrescar la página
+  </span>
   <div class="loader"></div>
 </div>
 }

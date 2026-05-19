@@ -51,10 +51,7 @@
 
       <!-- VIDEO -->
       <div
-  class="video-wrapper"
-  (touchstart)="onTouchStart($event)"
-  (touchend)="onTouchEnd($event)"
->
+  class="video-wrapper">
 
         <video
           [src]="videoActual.secure_url"
@@ -64,7 +61,20 @@
         ></video>
 
       </div>
+<div class="mobile-dots">
 
+  @for (video of videos; track video.public_id; let i = $index) {
+
+    <button
+      class="mobile-dot"
+      [class.active]="i === indiceVideoActual"
+      (click)="irAVideo(i)"
+      aria-label="Cambiar video"
+    ></button>
+
+  }
+
+</div>
       <!-- EXPLICACION -->
       <div class="video-description">
 

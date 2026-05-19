@@ -190,36 +190,13 @@ export class OwnVideosComponent implements OnInit {
     });
 
   }
-touchStartX = 0;
-touchEndX = 0;
+irAVideo(index: number): void {
 
-onTouchStart(event: TouchEvent): void {
-  this.touchStartX = event.changedTouches[0].screenX;
-}
+  this.indiceVideoActual = index;
 
-onTouchEnd(event: TouchEvent): void {
-  this.touchEndX = event.changedTouches[0].screenX;
-  this.handleSwipe();
-}
+  this.actualizarVista();
 
-handleSwipe(): void {
-
-  const diff =
-    this.touchStartX - this.touchEndX;
-
-  // swipe izquierda -> siguiente
-  if (diff > 50) {
-
-    this.cambiarVideo(1);
-
-  }
-
-  // swipe derecha -> anterior
-  if (diff < -50) {
-
-    this.cambiarVideo(-1);
-
-  }
+  this.preloadAdjacentVideos();
 
 }
 }
